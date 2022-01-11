@@ -1,0 +1,12 @@
+<form action="/added" method="post">
+    {% csrf_token %}
+<center><h1>Select the Account to Add Money</h1>
+<select name="lingam">
+    {% for i in obj %}    
+    <option value="{{i.name}}">{{i.name}}</option> 
+    {% endfor %}
+</select><br>
+<h1>Enter the Amount:</h1>
+<input type="number" name="amount">
+<input type="submit" value="Add"></center>
+</form>

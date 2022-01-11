@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form method="post" action="/">
+            {% csrf_token %}
+        <table>
+            {% for i in andy %}
+            
+            <tr>
+                <th>{{i.name}}</th>
+                <td>{{i.balance}}</td>
+            </tr>
+        
+            {% endfor %}
+        </table>
+    </form>
+    </body>
+</html>

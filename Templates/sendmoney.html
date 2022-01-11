@@ -1,0 +1,18 @@
+<form action="/fourpage" method="post"><center>
+    {% csrf_token %}
+    <h1>Select Sender Account:</h1>
+<select name="kacha">
+    {% for i in obj %}    
+    <option value="{{i.name}}">{{i.name}}</option> 
+    {% endfor %}
+</select><br><br>
+    <h1>Select Reciever Account:</h1>
+<select name="lucha">
+    {% for i in obj %}    
+    <option value="{{i.name}}">{{i.name}}</option> 
+    {% endfor %}
+</select><br><br>
+    Amount :<input type="number" name="amount"><br><br>
+    <input type="submit" value="send"><br>
+</center>
+</form>

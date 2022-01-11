@@ -1,0 +1,14 @@
+<form>
+    {% csrf_token %}
+<h1>Sent!, check balance here</h1>
+<table>
+    {% for i in andy %}
+    
+    <tr>
+        <th>{{i.name}}</th>
+        <td>{{i.balance}}</td>
+    </tr>
+
+    {% endfor %}
+</table>
+</form>
