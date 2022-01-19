@@ -1,6 +1,37 @@
+<head>
+    <style>
+        select{
+            height:30px;
+            width:150px;
+        }
+        .input{
+            background-color:black;
+            color:white;
+            border:2px solid darkgray;
+            height:40px;
+            width:130px;
+            font-size:20px;
+            border-radius:5px;
+        }
+        body{
+            border: 5px solid black;
+            margin:10px;
+        }
+    </style>
+</head>
+<body>
 <form action="/fourpage" method="post"><center>
     {% csrf_token %}
-    <h1>Select Sender Account:</h1>
+    <center>
+    
+        <div style="margin:20px 250px;border:3px solid black;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYaEHdIuHsvRR6QpLFzfsk1bl5cVi7IJLEWw&usqp=CAU"><br>
+        <big><big><big><big><big><b>__SparksF Banking Services__</h1></big></big></big></big></big></b><br><br>
+        </div>
+        
+        
+    <br>
+    <b><big><h1>Select Sender Account:</h1>
 <select name="kacha">
     {% for i in obj %}    
     <option value="{{i.name}}">{{i.name}}</option> 
@@ -13,6 +44,7 @@
     {% endfor %}
 </select><br><br>
     Amount :<input type="number" name="amount"><br><br>
-    <input type="submit" value="send"><br>
+    <input class="input" type="submit" value="send"><br><b><nig>
 </center>
 </form>
+</body>

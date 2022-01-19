@@ -1,8 +1,41 @@
+<html>
+<head>
+    <style>
+        .g-col-6{
+            height:100px;width:300px; 
+            font-size:30px; 
+            color:white;
+            background-color:black;
+            border:2px solid darkgray;
+            border-radius:8px
+        }
+        .g-col-6:hover{
+            background-color:white;
+            color:black;
+        }
+        body{
+            border: 5px solid black;
+            margin:10px;
+        }
+    </style>
+</head>
+<body>
 <form action="/onendhalf" method="post">
     {% csrf_token %}
 <center>
     
-    <input type="submit" value="Enter the bank">
-
+    <div style="margin:20px 250px;border:3px solid black;">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYaEHdIuHsvRR6QpLFzfsk1bl5cVi7IJLEWw&usqp=CAU"><br>
+    <big><big><big><big><big><b>__SparksF Banking Services__</h1></big></big></big></big></big></b><br><br>
+    </div>
+    <br><br>
+    <big><big><b>"A bank is a place that will lend you money if you can prove that you don't need it."</big></big></b><br><small><b>-Dylan Vishwas</b></small><br><br>
+</center><br><br>
+<center>
+    <div class="grid">  
+        <div ><input class="g-col-6" type="submit" value="Enter the bank" ></div>
+      </div>
 </center>
 </form>
+</body>
+</html>

@@ -21,24 +21,29 @@ def sendmoney(request):
 
 def fourpage(request):
     if request.method=="POST":
-        lucha=request.POST.get('lucha')
-        amount=request.POST.get('amount')
-        kacha=request.POST.get('kacha')
-        sender=Transfers.objects.get(name=kacha)
-        reciever=Transfers.objects.get(name=lucha)
-        sender.balance=sender.balance-int(amount)
-        reciever.balance=reciever.balance+int(amount)
-        Transfers.objects.filter(name=kacha).update(balance=sender.balance)
-        Transfers.objects.filter(name=lucha).update(balance=reciever.balance)
-        transaction=Transaction(
-            fromName=sender.name,
-            toName=reciever.name,
-            amount=amount,
-        )
-        transaction.save()
-        all=Transfers.objects.all()
-    return render(request,'fourpage.html',{'andy':all})
+        try:
+            lucha=request.POST.get('lucha')
+            amount=request.POST.get('amount')
+            kacha=request.POST.get('kacha')
+            sender=Transfers.objects.get(name=kacha)
+            reciever=Transfers.objects.get(name=lucha)
+            sender.balance=sender.balance-int(amount)
+            reciever.balance=reciever.balance+int(amount)
+            Transfers.objects.filter(name=kacha).update(balance=sender.balance)
+            Transfers.objects.filter(name=lucha).update(balance=reciever.balance)
+            transaction=Transaction(
+                fromName=sender.name,
+                toName=reciever.name,
+                amount=amount,
+            )
+            transaction.save()
+            all=Transfers.objects.all()
+            return render(request,'fourpage.html',{'andy':all})
 
+        except:
+            return HttpResponseRedirect("/fourpage")  
+    return render(request,'fourpage.html')         
+        
 def onendhalf(request):
     return render(request,'onendhalf.html')
 

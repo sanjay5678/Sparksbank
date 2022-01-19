@@ -1,14 +1,51 @@
+<head>
+    <style>
+        table{
+            border:2px solid black;
+            padding:1px;
+        }
+        th, 
+        td{
+            padding:10px;
+            text-align:center;
+            border:2px solid black;
+        }
+        body{
+            border: 5px solid black;
+            margin:10px;
+        }
+    </style>
+</head>
+<body>
 <form>
     {% csrf_token %}
+    <center>
+    
+        <div style="margin:20px 250px;border:3px solid black;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYaEHdIuHsvRR6QpLFzfsk1bl5cVi7IJLEWw&usqp=CAU"><br>
+        <big><big><big><big><big><b>__SparksF Banking Services__</h1></big></big></big></big></big></b><br><br>
+        </div>
+        
+        
+    <br><br>
 <h1>Sent!, check balance here</h1>
 <table>
+    <tr>
+        <th><b>Id</b></th>
+        <td><b>Name</b></td>
+        <td><b>Email</b></td>
+        <td><b>Balance</b></td>
+        </tr>
     {% for i in andy %}
     
     <tr>
-        <th>{{i.name}}</th>
-        <td>{{i.balance}}</td>
+    <th>{{i.id}}</th>
+    <td>{{i.name}}</td>
+    <td>{{i.email}}</td>
+    <td>{{i.balance}}</td>
     </tr>
 
     {% endfor %}
 </table>
 </form>
+</body>
