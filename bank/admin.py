@@ -1,6 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from bank.models import Transfers,Transactions
+from bank.models import Transfers,Transaction
 admin.site.register(Transfers)
-admin.site.register(Transactions)
+admin.site.register(Transaction)

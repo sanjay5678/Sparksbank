@@ -2,7 +2,7 @@ from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 import datetime
 from django.db.models import Q
-from bank.models import Transactions, Transfers
+from bank.models import Transaction, Transfers
 
 # Create your views here.
 
@@ -30,12 +30,12 @@ def fourpage(request):
         reciever.balance=reciever.balance+int(amount)
         Transfers.objects.filter(name=kacha).update(balance=sender.balance)
         Transfers.objects.filter(name=lucha).update(balance=reciever.balance)
-        transactions=Transactions(
+        transaction=Transaction(
             fromName=sender.name,
             toName=reciever.name,
             amount=amount,
         )
-        transactions.save()
+        transaction.save()
         all=Transfers.objects.all()
     return render(request,'fourpage.html',{'andy':all})
 
@@ -56,7 +56,7 @@ def added(request):
         return HttpResponseRedirect("/twopage")
     
 def history(request):
-    history=Transactions.objects.all()
+    history=Transaction.objects.all()
     return render(request,'history.html',{'history':history})
 
 def passbook(request):
@@ -66,5 +66,5 @@ def passbook(request):
 def showpass(request):
     if request.method=="POST":
         kacha=request.POST.get('kacha')
-        obj=Transactions.objects.filter(Q(fromName=kacha) | Q(toName=kacha))
+        obj=Transaction.objects.filter(Q(fromName=kacha) | Q(toName=kacha))
         return render(request,'showpass.html',{'history':obj})

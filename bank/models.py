@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils import timezone
+import datetime
 
 # Create your models here.
 class Transfers(models.Model):
@@ -11,12 +11,12 @@ class Transfers(models.Model):
     def __str__(self):
         return str(self.id)
 
-class Transactions(models.Model):   
+class Transaction(models.Model):   
     id = models.AutoField(primary_key=True)
     fromName = models.CharField(max_length=50,null=True)
     toName = models.CharField(max_length=50,null=True)
     amount = models.IntegerField(null=True)
-    date = models.DateTimeField(null=True,default=timezone.now())
+    date = models.DateTimeField(null=True,default=datetime.datetime.now())
     
     def __str__(self):
         return str(self.id)
