@@ -1,7 +1,8 @@
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
-
-from bank.models import Transfers
+import datetime
+from django.db.models import Q
+from bank.models import Transactions, Transfers
 
 # Create your views here.
 
@@ -22,13 +23,19 @@ def fourpage(request):
     if request.method=="POST":
         lucha=request.POST.get('lucha')
         amount=request.POST.get('amount')
-        kacha=request.session['sender']
+        kacha=request.POST.get('kacha')
         sender=Transfers.objects.get(name=kacha)
         reciever=Transfers.objects.get(name=lucha)
         sender.balance=sender.balance-int(amount)
         reciever.balance=reciever.balance+int(amount)
         Transfers.objects.filter(name=kacha).update(balance=sender.balance)
         Transfers.objects.filter(name=lucha).update(balance=reciever.balance)
+        transactions=Transactions(
+            fromName=sender.name,
+            toName=reciever.name,
+            amount=amount,
+        )
+        transactions.save()
         all=Transfers.objects.all()
     return render(request,'fourpage.html',{'andy':all})
 
@@ -48,4 +55,16 @@ def added(request):
         Transfers.objects.filter(name=person).update(balance=obj.balance)
         return HttpResponseRedirect("/twopage")
     
-    
+def history(request):
+    history=Transactions.objects.all()
+    return render(request,'history.html',{'history':history})
+
+def passbook(request):
+    history=Transfers.objects.all()
+    return render(request,'passbook.html',{'history':history})    
+
+def showpass(request):
+    if request.method=="POST":
+        kacha=request.POST.get('kacha')
+        obj=Transactions.objects.filter(Q(fromName=kacha) | Q(toName=kacha))
+        return render(request,'showpass.html',{'history':obj})

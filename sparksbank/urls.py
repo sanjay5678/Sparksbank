@@ -27,4 +27,7 @@ urlpatterns = [
     path('onendhalf',views.onendhalf),
     path('addmoney',views.addmoney),
     path('added',views.added),
+    path('history',views.history),
+    path('passbook',views.passbook),
+    path('showpass',views.showpass),
 ]
