@@ -1,0 +1,21 @@
+<html>
+    <table>
+        <tr>
+            <td><b>Slno</b></td>
+            <td><b>Sender</b></td>
+            <td><b>Reciever</b></td>
+            <td><b>Amount</b></td>
+            <td><b>TimeStamp</b></td>
+        </tr>
+{% for i in history %}
+
+        <tr>
+            <td>{{i.id}}</td>
+            <td>{{i.fromName}}</td>
+            <td>{{i.toName}}</td>
+            <td>{{i.amount}}</td>
+            <td>{{i.date}}</td>
+        </tr>
+{% endfor %}
+    </table>
+</html>

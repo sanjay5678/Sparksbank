@@ -1,0 +1,10 @@
+<form action="/showpass" method="post">
+    {% csrf_token %}
+<center><h1>Choose a User.</h1>
+<select name="kacha">
+    {% for i in history %}    
+    <option value="{{i.name}}">{{i.name}}</option> 
+    {% endfor %}
+</select><br><br>
+<input value="Show Passbook" type="submit"></center>
+</form>
